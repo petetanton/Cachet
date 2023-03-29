@@ -24,7 +24,8 @@
         </div>
         <div class="row">
             <div class="col-xs-12">
-                <canvas :id="metricId" height="160" width="600"></canvas>
+                <h2 :id="`metric_large_${metricId}`"></h2>
+               <canvas :id="`canvas_${metricId}`" height="160" width="600"></canvas>
             </div>
         </div>
     </div>
@@ -60,7 +61,7 @@ module.exports = {
         }
     },
     mounted () {
-        this.canvas = document.getElementById(this.metricId)
+        this.canvas = document.getElementById("canvas_" + this.metricId)
         this.context = this.canvas.getContext('2d')
 
         this.getData()
@@ -189,6 +190,16 @@ module.exports = {
                         }
                     }
             }})
+          
+            var bigMetric = document.getElementById("metric_large_" + this.metricId)
+            if (metric.suffix === "error budget breaches") {
+                this.canvas.style.display = 'none';
+                var values = _.values(this.data)
+                bigMetric.innerText = values[values.length - 1] + " " + metric.suffix
+            } else {
+                bigMetric.style.display = 'none';
+            }
+        
         }
     }
 }
