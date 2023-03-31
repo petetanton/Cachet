@@ -131,6 +131,7 @@ return [
         'calc_type'                => 'Calculation of metrics',
         'type_sum'                 => 'Sum',
         'type_avg'                 => 'Average',
+        'type_latest'              => 'Latest',
         'places'                   => 'Decimal places',
         'default_view'             => 'Default view',
         'threshold'                => 'How many minutes of threshold between metric points?',

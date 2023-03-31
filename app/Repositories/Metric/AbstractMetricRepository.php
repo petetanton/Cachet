@@ -86,6 +86,8 @@ abstract class AbstractMetricRepository
             return "sum({$this->getMetricPointsTable()}.value * {$this->getMetricPointsTable()}.counter) AS value";
         } elseif ($metric->calc_type == Metric::CALC_AVG) {
             return "avg({$this->getMetricPointsTable()}.value) AS value";
+        } elseif ($metric->calc_type == Metric::CALC_LATEST) {
+            return "LAST_VALUE({$this->getMetricPointsTable()}.value) OVER(ORDER BY {$this->getMetricPointsTable()}.created_at DESC) AS value";
         } else {
             return "sum({$this->getMetricPointsTable()}.value * {$this->getMetricPointsTable()}.counter) AS value";
         }

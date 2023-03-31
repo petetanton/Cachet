@@ -42,6 +42,13 @@ class Metric extends Model implements HasPresenter
     const CALC_AVG = 1;
 
     /**
+     * The calculation type of latest.
+     *
+     * @var int
+     */
+    const CALC_LATEST = 2;
+
+    /**
      * Viewable only authenticated users.
      *
      * @var int

@@ -192,7 +192,7 @@ module.exports = {
             }})
           
             var bigMetric = document.getElementById("metric_large_" + this.metricId)
-            if (metric.suffix === "error budget breaches") {
+            if (metric.suffix === "error budget remaining") {
                 this.canvas.style.display = 'none';
                 var values = _.values(this.data)
                 bigMetric.innerText = values[values.length - 1] + " " + metric.suffix
