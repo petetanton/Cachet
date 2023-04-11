@@ -8,7 +8,7 @@
                     <i class="ion ion-ios-help-outline" data-toggle="tooltip" :data-title="metric.description" v-if="metric.description"></i>
                 </strong>
             </div>
-            <div class="col-xs-2">
+            <div class="col-xs-2" :id="`time_${metricId}`">
                 <div class="dropdown pull-right">
                     <a href='javascript: void(0)' class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class='filter'>{{view.title || metric.default_view_name}}</span> <span class="caret"></span></a>
 
@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-12" :id="`div_${metricId}`">
                 <h2 :id="`metric_large_${metricId}`"></h2>
                <canvas :id="`canvas_${metricId}`" height="160" width="600"></canvas>
             </div>
@@ -190,16 +190,29 @@ module.exports = {
                         }
                     }
             }})
-          
+
             var bigMetric = document.getElementById("metric_large_" + this.metricId)
+            var div = document.getElementById("div_" + this.metricId)
+            var time = document.getElementById("time_" + this.metricId)
+
             if (metric.suffix === "error budget remaining") {
                 this.canvas.style.display = 'none';
+                time.style.display = 'none';
                 var values = _.values(this.data)
-                bigMetric.innerText = values[values.length - 1] + " " + metric.suffix
+                var latest = values[values.length - 1]
+
+                div.style.color = 'white';
+                if (latest <= 0.0) {
+                    div.style.backgroundColor = 'red';
+                } else if (latest <= 15.0) {
+                    div.style.backgroundColor = 'yellow';
+                } else {
+                    div.style.backgroundColor = 'green';
+                }
+                bigMetric.innerText = latest + " " + metric.suffix
             } else {
                 bigMetric.style.display = 'none';
             }
-        
         }
     }
 }

@@ -76,6 +76,7 @@ class UpdateMetricCommandHandler
             'threshold'     => $command->threshold,
             'order'         => $command->order,
             'visible'       => $command->visible,
+            'group_id'      => $command->group_id,
         ];
 
         return array_filter($params, function ($val) {

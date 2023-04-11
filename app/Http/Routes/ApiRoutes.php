@@ -56,6 +56,8 @@ class ApiRoutes
                 $router->get('incidents/{incident}/updates/{update}', 'IncidentUpdateController@show');
 
                 $router->get('metrics', 'MetricController@index');
+                $router->get('metrics/groups', 'MetricGroupController@index');
+                $router->get('metrics/groups/{metric_group}', 'MetricGroupController@show');
                 $router->get('metrics/{metric}', 'MetricController@show');
                 $router->get('metrics/{metric}/points', 'MetricPointController@index');
 
@@ -71,6 +73,7 @@ class ApiRoutes
                 $router->post('incidents', 'IncidentController@store');
                 $router->post('incidents/{incident}/updates', 'IncidentUpdateController@store');
                 $router->post('metrics', 'MetricController@store');
+                $router->post('metrics/groups', 'MetricGroupController@store');
                 $router->post('metrics/{metric}/points', 'MetricPointController@store');
                 $router->post('schedules', 'ScheduleController@store');
                 $router->post('subscribers', 'SubscriberController@store');
@@ -80,6 +83,7 @@ class ApiRoutes
                 $router->put('incidents/{incident}', 'IncidentController@update');
                 $router->put('incidents/{incident}/updates/{update}', 'IncidentUpdateController@update');
                 $router->put('metrics/{metric}', 'MetricController@update');
+                $router->put('metrics/groups/{metric_group}', 'MetricGroupController@update');
                 $router->put('metrics/{metric}/points/{metric_point}', 'MetricPointController@update');
                 $router->put('schedules/{schedule}', 'ScheduleController@update');
 
@@ -88,6 +92,7 @@ class ApiRoutes
                 $router->delete('incidents/{incident}', 'IncidentController@destroy');
                 $router->delete('incidents/{incident}/updates/{update}', 'IncidentUpdateController@destroy');
                 $router->delete('metrics/{metric}', 'MetricController@destroy');
+                $router->delete('metrics/groups/{metric_group}', 'MetricGroupController@destroy');
                 $router->delete('metrics/{metric}/points/{metric_point}', 'MetricPointController@destroy');
                 $router->delete('schedules/{schedule}', 'ScheduleController@destroy');
                 $router->delete('subscribers/{subscriber}', 'SubscriberController@destroy');

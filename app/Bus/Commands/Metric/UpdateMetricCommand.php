@@ -100,6 +100,13 @@ final class UpdateMetricCommand
     public $visible;
 
     /**
+     * The metric group.
+     *
+     * @var int|null
+     */
+    public $group_id;
+
+    /**
      * The validation rules.
      *
      * @var string[]
@@ -116,6 +123,7 @@ final class UpdateMetricCommand
         'threshold'     => 'nullable|int',
         'order'         => 'nullable|int',
         'visible'       => 'nullable|int|between:0,2',
+        'group_id'      => 'nullable|int',
     ];
 
     /**
@@ -133,10 +141,11 @@ final class UpdateMetricCommand
      * @param int                            $threshold
      * @param int|null                       $order
      * @param int                            $visible
+     * @param int|null                       $group_id
      *
      * @return void
      */
-    public function __construct(Metric $metric, $name, $suffix, $description, $default_value, $calc_type, $display_chart, $places, $default_view, $threshold, $order = null, $visible = null)
+    public function __construct(Metric $metric, $name, $suffix, $description, $default_value, $calc_type, $display_chart, $places, $default_view, $threshold, $order = null, $visible = null, $group_id = null)
     {
         $this->metric = $metric;
         $this->name = $name;
@@ -150,5 +159,6 @@ final class UpdateMetricCommand
         $this->threshold = $threshold;
         $this->order = $order;
         $this->visible = $visible;
+        $this->group_id = $group_id;
     }
 }

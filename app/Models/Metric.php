@@ -72,7 +72,7 @@ class Metric extends Model implements HasPresenter
     /**
      * The model's attributes.
      *
-     * @var string[]
+     * @var mixed[]
      */
     protected $attributes = [
         'name'          => '',
@@ -84,6 +84,7 @@ class Metric extends Model implements HasPresenter
         'threshold'     => 5,
         'order'         => 0,
         'visible'       => 1,
+        'group_id'      => 0,
     ];
 
     /**
@@ -101,6 +102,7 @@ class Metric extends Model implements HasPresenter
         'threshold'     => 'int',
         'order'         => 'int',
         'visible'       => 'int',
+        'group_id'      => 'int',
     ];
 
     /**
@@ -120,6 +122,7 @@ class Metric extends Model implements HasPresenter
         'threshold',
         'order',
         'visible',
+        'group_id',
     ];
 
     /**
@@ -135,6 +138,7 @@ class Metric extends Model implements HasPresenter
         'places'        => 'required|numeric|between:0,4',
         'default_view'  => 'required|numeric|between:0,3',
         'visible'       => 'required|numeric|between:0,2',
+        'group_id'      => 'nullable|int',
     ];
 
     /**
@@ -150,7 +154,18 @@ class Metric extends Model implements HasPresenter
         'calc_type',
         'order',
         'visible',
+        'group_id',
     ];
+
+    /**
+     * Get the group relation.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function group()
+    {
+        return $this->belongsTo(MetricGroup::class, 'group_id', 'id');
+    }
 
     /**
      * Overrides the models boot method.
@@ -239,5 +254,34 @@ class Metric extends Model implements HasPresenter
     public function getPresenterClass()
     {
         return MetricPresenter::class;
+    }
+
+    /**
+     * Finds all ungrouped metrics.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeUngrouped(Builder $query)
+    {
+        return $query
+            ->where('group_id', '=', 0)
+            ->orderBy('order')
+            ->orderBy('created_at');
+    }
+
+    /**
+     * Finds all grouped metrics.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeGrouped(Builder $query)
+    {
+        return $query
+            ->where('group_id', '>', 0)
+            ->groupBy('group_id');
     }
 }

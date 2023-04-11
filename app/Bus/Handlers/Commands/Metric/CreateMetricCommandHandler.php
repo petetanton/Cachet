@@ -58,6 +58,7 @@ class CreateMetricCommandHandler
             'threshold'     => $command->threshold,
             'order'         => $command->order,
             'visible'       => $command->visible,
+            'group_id'      => $command->group_id,
         ]);
 
         event(new MetricWasCreatedEvent($this->auth->user(), $metric));

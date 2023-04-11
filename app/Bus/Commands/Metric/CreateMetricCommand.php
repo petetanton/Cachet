@@ -97,6 +97,13 @@ final class CreateMetricCommand
     public $visible;
 
     /**
+     * The metric group.
+     *
+     * @var int
+     */
+    public $group_id;
+
+    /**
      * The validation rules.
      *
      * @var string[]
@@ -113,6 +120,7 @@ final class CreateMetricCommand
         'threshold'     => 'required|int',
         'order'         => 'nullable|int',
         'visible'       => 'required|int|between:0,2',
+        'group_id'      => 'nullable|int',
     ];
 
     /**
@@ -129,10 +137,11 @@ final class CreateMetricCommand
      * @param int    $threshold
      * @param int    $order
      * @param int    $visible
+     * @param int    $group_id
      *
      * @return void
      */
-    public function __construct($name, $suffix, $description, $default_value, $calc_type, $display_chart, $places, $default_view, $threshold, $order = 0, $visible = 1)
+    public function __construct($name, $suffix, $description, $default_value, $calc_type, $display_chart, $places, $default_view, $threshold, $order = 0, $visible = 1, $group_id = 0)
     {
         $this->name = $name;
         $this->suffix = $suffix;
@@ -145,5 +154,6 @@ final class CreateMetricCommand
         $this->threshold = $threshold;
         $this->order = $order;
         $this->visible = $visible;
+        $this->group_id = $group_id;
     }
 }

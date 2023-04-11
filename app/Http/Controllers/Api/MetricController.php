@@ -73,7 +73,8 @@ class MetricController extends AbstractApiController
                 Binput::get('default_view', Binput::get('view', 1)),
                 Binput::get('threshold', 5),
                 Binput::get('order', 0),
-                Binput::get('visible', 1)
+                Binput::get('visible', 1),
+                Binput::get('group_id', 0)
             ));
         } catch (QueryException $e) {
             throw new BadRequestHttpException();
@@ -104,7 +105,8 @@ class MetricController extends AbstractApiController
                 Binput::get('default_view', Binput::get('view')),
                 Binput::get('threshold'),
                 Binput::get('order'),
-                Binput::get('visible')
+                Binput::get('visible'),
+                Binput::get('group_id')
             ));
         } catch (QueryException $e) {
             throw new BadRequestHttpException();
