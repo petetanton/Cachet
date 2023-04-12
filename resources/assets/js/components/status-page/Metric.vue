@@ -201,12 +201,13 @@ module.exports = {
                 var values = _.values(this.data)
                 var latest = values[values.length - 1]
 
-                div.style.color = 'white';
                 if (latest <= 0.0) {
+                    div.style.color = 'white';
                     div.style.backgroundColor = 'red';
                 } else if (latest <= 15.0) {
                     div.style.backgroundColor = 'yellow';
                 } else {
+                    div.style.color = 'white';
                     div.style.backgroundColor = 'green';
                 }
                 bigMetric.innerText = latest + " " + metric.suffix

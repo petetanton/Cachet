@@ -8,7 +8,17 @@
                 </li>
 
                 <div class="group-item">
-                    @each('partials.metric', $metricGroup->metrics, 'metric')
+                    <div class="row">
+                        <div class="col-xs-12 metric-description">
+                            These metric tiles represent the remaining error budget as a percentage for the preceding
+                            30 day rolling window</br>
+                            > 0% - the service is achieving it's SLO</br>
+                            < 0% - the service is missing it's SLO
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 0px;">
+                        @each('partials.metric', $metricGroup->metrics, 'metric')
+                    </div>
                 </div>
             @endforeach
         </ul>

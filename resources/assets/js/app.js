@@ -59,6 +59,7 @@ const Flatpickr = require('flatpickr');
             'setup': require('./components/Setup'),
             'dashboard': require('./components/dashboard/Dashboard'),
             'metric-chart': require('./components/status-page/Metric'),
+            'errorbudgetmetric-chart': require('./components/status-page/ErrorBudgetMetric'),
         }
     });
 })()
