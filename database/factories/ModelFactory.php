@@ -15,6 +15,7 @@ use CachetHQ\Cachet\Models\Incident;
 use CachetHQ\Cachet\Models\IncidentTemplate;
 use CachetHQ\Cachet\Models\IncidentUpdate;
 use CachetHQ\Cachet\Models\Metric;
+use CachetHQ\Cachet\Models\MetricGroup;
 use CachetHQ\Cachet\Models\MetricPoint;
 use CachetHQ\Cachet\Models\Schedule;
 use CachetHQ\Cachet\Models\Setting;
@@ -38,6 +39,14 @@ $factory->define(ComponentGroup::class, function ($faker) {
         'name'      => $faker->words(2, true),
         'order'     => 0,
         'collapsed' => mt_rand(0, 4),
+        'visible'   => $faker->boolean(),
+    ];
+});
+
+$factory->define(MetricGroup::class, function ($faker) {
+    return [
+        'name'      => $faker->words(2, true),
+        'order'     => 0,
         'visible'   => $faker->boolean(),
     ];
 });

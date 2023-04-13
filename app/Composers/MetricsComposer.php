@@ -12,6 +12,7 @@
 namespace CachetHQ\Cachet\Composers;
 
 use CachetHQ\Cachet\Models\Metric;
+use CachetHQ\Cachet\Models\MetricGroup;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\View\View;
@@ -62,10 +63,15 @@ class MetricsComposer
     public function compose(View $view)
     {
         $displayMetrics = $this->config->get('setting.display_graphs');
+        $metricGroups = $this->getVisibleGroupedMetrics();
+        $ungroupedMetrics = Metric::ungrouped()->orderBy('order')->orderBy('id')->get();
+
         $metrics = $this->getVisibleMetrics($displayMetrics);
 
         $view->withDisplayMetrics($displayMetrics)
-            ->withMetrics($metrics);
+            ->withMetrics($metrics)
+            ->withUngroupedMetrics($ungroupedMetrics)
+            ->withMetricGroups($metricGroups);
     }
 
     /**
@@ -88,5 +94,17 @@ class MetricsComposer
         }
 
         return $metrics->orderBy('order')->orderBy('id')->get();
+    }
+
+    protected function getVisibleGroupedMetrics()
+    {
+        $metricGroupsBuilder = MetricGroup::query();
+        if (!$this->guard->check()) {
+            $metricGroupsBuilder->visible();
+        }
+
+        $usedMetricGroups = Metric::grouped()->pluck('group_id');
+
+        return $metricGroupsBuilder->used($usedMetricGroups)->get();
     }
 }
