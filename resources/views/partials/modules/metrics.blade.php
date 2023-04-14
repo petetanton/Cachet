@@ -1,23 +1,24 @@
 @if($displayMetrics && $appGraphs)
 
     @if($metricGroups->isNotEmpty())
+        <h3>Error Budgets by domain</h3>
         <ul class="list-group">
-            @foreach($metricGroups as $metricGroup)
+        <div style="display: inline-block;">
+            <p class="col-xs-12 metric-description list-group-item-error-budget">
+                These metric tiles represent the remaining error budget as a percentage for the preceding
+                30 day rolling window</br>
+                > 0% - the service is achieving it's SLO</br>
+                < 0% - the service is missing it's SLO
+            </p>
+        </div>
+        @foreach($metricGroups as $metricGroup)
                 <li class="list-group-item metric group-name">
                     <strong>{{ $metricGroup->name }}</strong>
                 </li>
 
                 <div class="group-item">
-                    <div class="row">
-                        <div class="col-xs-12 metric-description">
-                            These metric tiles represent the remaining error budget as a percentage for the preceding
-                            30 day rolling window</br>
-                            > 0% - the service is achieving it's SLO</br>
-                            < 0% - the service is missing it's SLO
-                        </div>
-                    </div>
                     <div class="row" style="margin: 0px;">
-                        @each('partials.metric', $metricGroup->metrics, 'metric')
+                        @each('partials.metric', $metricGroup->metrics->sortBy('order'), 'metric')
                     </div>
                 </div>
             @endforeach

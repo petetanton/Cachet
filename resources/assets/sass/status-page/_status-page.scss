@@ -316,7 +316,6 @@ body.status-page {
             font-size: 1.1em;
             padding: 15px 15px;
             margin: 15px;
-            text-align: center;
 
             display: inline;
             li {
@@ -378,6 +377,7 @@ body.status-page {
 
         .metric-description {
             font-size: 1.25em;
+            width: 95%;
         }
 
         &.components {
@@ -496,5 +496,9 @@ body.status-page {
     //Display inline the incident update message.
     .incident-update-item > p {
         display: inline-block;
+    }
+
+    .hr-status {
+        border-top: 0.125em solid $cachet-base-dark;
     }
 }

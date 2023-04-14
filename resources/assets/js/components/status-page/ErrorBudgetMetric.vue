@@ -1,6 +1,6 @@
 <template>
     <a :href="`${dashboardurl}`" target="_blank">
-        <div class="col-xs-4 list-group-item-error-budget" :id="`div_${metricId}`" style="margin: 15px">
+        <div class="col-xs-3 list-group-item-error-budget" :id="`div_${metricId}`" style="margin: 15px">
             <span :id="`metric_name_${metricId}`" style="font-weight: bold">
                 {{metric.name}}
             </span>
