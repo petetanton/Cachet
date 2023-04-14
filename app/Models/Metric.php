@@ -282,6 +282,7 @@ class Metric extends Model implements HasPresenter
     {
         return $query
             ->where('group_id', '>', 0)
+            ->orderBy('order')
             ->groupBy('group_id');
     }
 }

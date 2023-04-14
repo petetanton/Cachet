@@ -5,6 +5,7 @@
 @include('partials.modules.status')
 @include('partials.about-app')
 @include('partials.modules.components')
+<hr class="hr-status"></hr>
 @include('partials.modules.metrics')
 @include('partials.modules.stickied')
 @include('partials.modules.scheduled')
