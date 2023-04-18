@@ -63,6 +63,7 @@ class MetricsComposer
     public function compose(View $view)
     {
         $displayMetrics = $this->config->get('setting.display_graphs');
+        $dashboardUrl = $this->config->get('setting.dashboard_url');
         $metricGroups = $this->getVisibleGroupedMetrics();
         $ungroupedMetrics = Metric::ungrouped()->orderBy('order')->orderBy('id')->get();
 
@@ -71,7 +72,8 @@ class MetricsComposer
         $view->withDisplayMetrics($displayMetrics)
             ->withMetrics($metrics)
             ->withUngroupedMetrics($ungroupedMetrics)
-            ->withMetricGroups($metricGroups);
+            ->withMetricGroups($metricGroups)
+            ->withDashboardUrl($dashboardUrl);
     }
 
     /**

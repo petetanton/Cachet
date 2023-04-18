@@ -123,4 +123,15 @@ return [
     */
 
     'always_authenticate' => false,
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Dashboard URL
+    |--------------------------------------------------------------------------
+    |
+    | A url that should be loaded if the metric tiles are clicked
+    |
+    */
+    'dashboard_url' => env('DASHBOARD_URL', ''),
 ];

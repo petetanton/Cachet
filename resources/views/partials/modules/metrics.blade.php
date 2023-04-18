@@ -18,7 +18,11 @@
 
                 <div class="group-item">
                     <div class="row" style="margin: 0px;">
-                        @each('partials.metric', $metricGroup->metrics->sortBy('order'), 'metric')
+                        @foreach ($metricGroup->metrics->sortBy('order') as $metric)
+                            <div>
+                                <errorbudgetmetric-chart :metric="{{ $metric->toJson() }}" dashboardurl="{{ $dashboardUrl  }}"></errorbudgetmetric-chart>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             @endforeach
