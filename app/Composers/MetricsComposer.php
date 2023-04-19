@@ -73,7 +73,8 @@ class MetricsComposer
             ->withMetrics($metrics)
             ->withUngroupedMetrics($ungroupedMetrics)
             ->withMetricGroups($metricGroups)
-            ->withDashboardUrl($dashboardUrl);
+            ->withDashboardUrl($dashboardUrl)
+            ->withMetricTitle($this->config->get('setting.metric_title'));
     }
 
     /**

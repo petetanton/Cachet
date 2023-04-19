@@ -14,6 +14,7 @@ namespace CachetHQ\Cachet\Composers;
 use CachetHQ\Cachet\Models\Component;
 use CachetHQ\Cachet\Models\ComponentGroup;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\View\View;
 
 /**
@@ -38,8 +39,9 @@ class ComponentsComposer
      *
      * @return void
      */
-    public function __construct(Guard $guard)
+    public function __construct(Repository $config, Guard $guard)
     {
+        $this->config = $config;
         $this->guard = $guard;
     }
 
@@ -56,7 +58,8 @@ class ComponentsComposer
         $ungroupedComponents = Component::ungrouped()->orderBy('status', 'desc')->get();
 
         $view->withComponentGroups($componentGroups)
-            ->withUngroupedComponents($ungroupedComponents);
+            ->withUngroupedComponents($ungroupedComponents)
+            ->withComponentTitle($this->config->get('setting.component_title'));
     }
 
     /**

@@ -1,7 +1,7 @@
 @if($displayMetrics && $appGraphs)
 
     @if($metricGroups->isNotEmpty())
-        <h3>Error Budgets by domain</h3>
+        <h3>{{ $metricTitle }}</h3>
         <ul class="list-group">
         <div style="display: inline-block;">
             <p class="col-xs-12 metric-description list-group-item-error-budget">

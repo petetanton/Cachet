@@ -134,4 +134,24 @@ return [
     |
     */
     'dashboard_url' => env('DASHBOARD_URL', ''),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Components title
+    |--------------------------------------------------------------------------
+    |
+    | The title for the list of components on the status page
+    |
+    */
+    'component_title' => env('COMPONENT_TITLE', 'Components'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Metrics title
+    |--------------------------------------------------------------------------
+    |
+    | The title for the list of metrics on the status page
+    |
+    */
+    'metric_title' => env('METRIC_TITLE', 'Metrics'),
 ];
