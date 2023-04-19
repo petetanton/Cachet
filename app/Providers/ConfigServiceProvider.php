@@ -107,6 +107,8 @@ class ConfigServiceProvider extends ServiceProvider
         }
 
         $this->app->config->set('setting.dashboard_url', $this->app->config->get('setting.dashboard_url'));
+        $this->app->config->set('setting.component_title', $this->app->config->get('setting.component_title'));
+        $this->app->config->set('setting.metric_title', $this->app->config->get('setting.metric_title'));
     }
 
     /**

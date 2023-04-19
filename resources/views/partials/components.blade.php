@@ -1,4 +1,4 @@
-<h3>Component summaries</h3>
+<h3>{{ $componentTitle }}</h3>
 @if($componentGroups->isNotEmpty())
 @foreach($componentGroups as $componentGroup)
 <ul class="list-group components">
